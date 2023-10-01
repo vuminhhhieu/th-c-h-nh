@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hiển thị dữ liệu</title>
+</head>
+<body>
+    <h1>Images from Picsum API</h1>
+    <div id="data"></div>
+
+    <script>
+        const fetchData = async () => {
+            try {
+                const response = await fetch('https://picsum.photos/v2/list');
+            const data = await response.json();
+
+            const dataElement = document.getElementById('data');
+            const userIdElement = document.createElement('h2');
+            const titleElement = document.createElement('h2');
+            const bodyElement = document.createElement('h2');
+
+            userIdElement.textContent = 'User ID: ' + data.userId;
+            titleElement.textContent = 'Task Title: ' + data.title;
+            bodyElement.textContent = 'Body: ' + (data.body);
+
+            dataElement.appendChild(userIdElement);
+            dataElement.appendChild(titleElement);
+            dataElement.appendChild(bodyElement);
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        };
+
+        fetchData();
+    </script>
+    
+</body>
+</html>
